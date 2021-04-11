@@ -11,8 +11,12 @@ function SetColor (red: number, green: number, blue: number) {
     basic.pause(200)
 }
 basic.forever(function () {
-    red = 0
-    green = 0
-    blue = 255
+    red = Math.map(input.acceleration(Dimension.X), 0, 1023, 0, 255)
+    green = Math.map(input.acceleration(Dimension.Y), 0, 1023, 0, 255)
+    blue = Math.map(input.acceleration(Dimension.Z), -1023, 0, 0, 255)
     SetColor(red, green, blue)
+    led.plotBarGraph(
+    blue,
+    255
+    )
 })
